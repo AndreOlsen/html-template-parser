@@ -1,12 +1,19 @@
 <?php
 class TemplateParser {
 
-    protected $outputFile;
+    //Output variable
+    var $outputFile;
 
-    public function templateParser($templateFile = "default_template.html") {
-        (file_exists($templateFile)) ? $this->outputFile = file_get_contents($templateFile) : die("Fejl: Template fil " . $templateFile . " ikke fundet.");
+    public function __construct($templateFile) {
+        $this->file = $templateFile;
     }
 
+    //Check if file exists and then get document content into a string
+    public function parse() {
+        (file_exists($this->file)) ? $this->outputFile = file_get_contents($this->file) : die("Fejl: Template fil " . $this->file . " ikke fundet.");
+    }
+
+    //Parse template file
     public function parseTemplate($tags = []) {
         if (count($tags) > 0) {
             foreach($tags as $tag => $data) {
@@ -26,6 +33,7 @@ class TemplateParser {
         return $content; 
     }
 
+    //Display finished page
     public function display() {
         return $this->outputFile;
     }
