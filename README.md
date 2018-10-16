@@ -1,2 +1,2 @@
-# html-template-parser
-Parses a html template
+# Simple html template parser
+A very simple html template parser.
